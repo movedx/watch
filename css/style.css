@@ -29,4 +29,5 @@ body {
   display: flex;
   justify-content: center;
   color: var(--text-color);
+  font-size: 5rem;
 }
