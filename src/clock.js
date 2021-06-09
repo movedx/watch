@@ -8,7 +8,6 @@ function clock() {
   s = s < 10 ? "0" + s : s;
   let time = h + " : " + m + " : " + s;
   document.getElementById("watch").textContent = time;
-  setTimeout(clock, 1000);
 }
 
-clock();
+export { clock };
