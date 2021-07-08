@@ -1,6 +1,11 @@
-import { getTime } from "./utils.js";
+import { state, screen } from "./main.js";
 
 function alarm() {
+  showAlarm();
+}
+
+function showAlarm() {
+  document.getElementById("watch").textContent = "";
   let setAlarmButton = document.createElement("button");
   setAlarmButton.className += " button";
   setAlarmButton.textContent = "Set Alarm";
@@ -14,6 +19,7 @@ function alarm() {
   };
 
   setAlarmButton.addEventListener("click", setAlarm);
+  state.currentScreen = screen.ALARM;
 }
 
 export { alarm };
