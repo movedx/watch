@@ -122,3 +122,15 @@ body {
   color: var(--text-color);
   font-size: 5rem;
 }
+
+#alarmControls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.alarmInput {
+  width: 80px;
+  height: 80px;
+}

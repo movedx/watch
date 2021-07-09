@@ -6,9 +6,6 @@ let id;
 function showClock() {
   if (id) {
     clearInterval(id);
-    if (state.currentScreen == screen.CLOCK) {
-      hideClock();
-    }
   }
   document.getElementById("watch").textContent = "";
   let clock = document.createElement("div");
@@ -31,7 +28,7 @@ function showClock() {
 
 function hideClock() {
   clearInterval(id);
-  document.getElementById("clock").remove();
+  document.getElementById("clock")?.remove();
 }
 
 function clock() {
