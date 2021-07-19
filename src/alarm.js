@@ -1,5 +1,6 @@
 import { state, screen } from "./main.js";
 import { clock } from "./clock.js";
+import { getTime } from "./utils.js";
 
 function alarm() {
   showAlarm();
@@ -17,6 +18,7 @@ function showAlarm() {
 
   let inputHours = document.createElement("input");
   inputHours.className += " alarmInput";
+  inputHours.id = "alarmInputHours";
   inputHours.type = "number";
   inputHours.placeholder = "h";
   inputHours.min = 0;
@@ -26,6 +28,7 @@ function showAlarm() {
 
   let inputMinutes = document.createElement("input");
   inputMinutes.className += " alarmInput";
+  inputMinutes.id = "alarmInputMinutes";
   inputMinutes.type = "number";
   inputMinutes.placeholder = "m";
   inputMinutes.min = 0;
@@ -35,6 +38,7 @@ function showAlarm() {
 
   let inputSeconds = document.createElement("input");
   inputSeconds.className += " alarmInput";
+  inputSeconds.id = "alarmInputSeconds";
   inputSeconds.type = "number";
   inputSeconds.placeholder = "s";
   inputSeconds.min = 0;
@@ -58,8 +62,29 @@ function showAlarm() {
 
 let setAlarm = () => {
   let setAlarmButton = document.getElementById("setAlarmButton");
+  let h = document.getElementById("alarmInputHours").value;
+  let m = document.getElementById("alarmInputMinutes").value;
+  let s = document.getElementById("alarmInputSeconds").value;
+  state.alarmTime.push({ h, m, s });
   state.alarmActive = true;
-  setAlarmButton.remove();
+  let intervalId = setInterval(() => {
+    if (state.alarmActive) {
+      let now = getTime().localTime;
+      let alarmTime = state.alarmTime[0];
+      if (
+        now.h === alarmTime.h &&
+        now.m === alarmTime.m &&
+        now.s === alarmTime.s
+      ) {
+        state.alarmActive = false;
+        clearInterval(intervalId);
+        state.alarmTime.shift();
+        alert("Ding Dong!!!");
+        setAlarmButton.style.display = "block";
+      }
+    }
+  }, 200);
+  setAlarmButton.style.display = "none";
 };
 
 function setTwoNumberDecimal(event) {
