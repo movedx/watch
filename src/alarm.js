@@ -89,7 +89,6 @@ let setAlarm = () => {
 
 function setTwoNumberDecimal(event) {
   this.value = this.value < 10 ? "0" + this.value : this.value;
-  console.log(event);
 }
 
 export { alarm };
