@@ -131,6 +131,12 @@ body {
   font-size: 45px;
 }
 
+.timerBtn {
+  width: 70px;
+  height: 50px;
+  font-size: 45px;
+}
+
 .alarmInput {
   width: 70px;
   height: 50px;

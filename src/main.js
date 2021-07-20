@@ -16,8 +16,8 @@ let state = {
   alarmActive: false,
   timerActive: false,
   countdownActive: false,
-  alarmTime: [],
-  timerTime: 0,
+  alarmTime: [], // set alarms
+  timerTime: [], // laps time
   countdownTimeLeft: 0,
   currentFunction: "clock",
   currentTime: { h: 0, m: 0, s: 0 },
