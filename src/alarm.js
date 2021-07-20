@@ -36,24 +36,12 @@ function showAlarm() {
   inputMinutes.step = 1;
   inputMinutes.onchange = setTwoNumberDecimal;
 
-  let inputSeconds = document.createElement("input");
-  inputSeconds.className += " alarmInput";
-  inputSeconds.id = "alarmInputSeconds";
-  inputSeconds.type = "number";
-  inputSeconds.placeholder = "s";
-  inputSeconds.min = 0;
-  inputSeconds.max = 59;
-  inputSeconds.step = 1;
-  inputSeconds.onchange = setTwoNumberDecimal;
-
   let watchContainer = document.getElementById("watch");
   watchContainer.append(controls);
 
   controls.append(inputHours);
   controls.append(":");
   controls.append(inputMinutes);
-  controls.append(":");
-  controls.append(inputSeconds);
   controls.append(setAlarmButton);
 
   setAlarmButton.addEventListener("click", setAlarm);
@@ -64,23 +52,20 @@ let setAlarm = () => {
   let setAlarmButton = document.getElementById("setAlarmButton");
   let h = document.getElementById("alarmInputHours").value;
   let m = document.getElementById("alarmInputMinutes").value;
-  let s = document.getElementById("alarmInputSeconds").value;
-  state.alarmTime.push({ h, m, s });
+  state.alarmTime.push({ h, m });
   state.alarmActive = true;
   let intervalId = setInterval(() => {
     if (state.alarmActive) {
       let now = getTime().localTime;
       let alarmTime = state.alarmTime[0];
-      if (
-        now.h === alarmTime.h &&
-        now.m === alarmTime.m &&
-        now.s === alarmTime.s
-      ) {
+      if (now.h === alarmTime.h && now.m === alarmTime.m) {
         state.alarmActive = false;
         clearInterval(intervalId);
         state.alarmTime.shift();
         alert("Ding Dong!!!");
         setAlarmButton.style.display = "block";
+        document.getElementById("alarmInputHours").value = "";
+        document.getElementById("alarmInputMinutes").value = "";
       }
     }
   }, 200);
