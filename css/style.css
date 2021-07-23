@@ -123,6 +123,15 @@ body {
   font-size: 5rem;
 }
 
+#timerBtnContainer {
+  display: flex;
+}
+
+#lapsList {
+  white-space: pre;
+  font-size: 15px;
+}
+
 #alarmControls {
   display: flex;
   flex-direction: row;
